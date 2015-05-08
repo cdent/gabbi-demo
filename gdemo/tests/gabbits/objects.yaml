@@ -1,0 +1,60 @@
+#
+# Objects are things stored in a container. Like containers they can
+# be GET, PUT, POSTed (to generate an id), DELETEd.
+#
+
+tests: 
+
+    - name: make a container
+      desc: a place to put things
+      url: /shed
+      method: PUT
+      request_headers:
+          content-type: application/json
+      data:
+          owner: darius
+      status: 201
+
+    - name: list the zero objects
+      url: /shed/objects
+      request_headers:
+          accept: application/json
+      response_json_paths:
+          $.objects: []
+
+    - name: post a kitten into the container
+      url: /shed/objects
+      method: POST
+      request_headers:
+          content-type: image/png
+      data: <@kitten.png
+      status: 201
+      response_headers:
+          location: /$SCHEME://$NETLOC/shed/objects/
+
+    - name: get that kitten
+      url: $LOCATION
+      response_headers:
+          content-type: image/png
+
+    - name: meant to name it kitten
+      url: /shed/objects/kitten
+      method: PUT
+      request_headers:
+          content-type: image/png
+      data: <@kitten.png
+      status: 201
+      response_headers:
+          location: $SCHEME://$NETLOC/shed/objects/kitten
+
+    - name: get that kitten again
+      url: $LOCATION
+      response_headers:
+          content-type: image/png
+
+    - name: list the objects
+      url: /shed/objects
+      request_headers:
+          accept: application/json
+      response_json_paths:
+          $.objects[-1]: kitten
