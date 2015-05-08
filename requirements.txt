@@ -1,0 +1,6 @@
+gabbi
+selector
+WebOb
+tox
+testrepository
+tempest-lib

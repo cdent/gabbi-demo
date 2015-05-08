@@ -1,0 +1,11 @@
+# Initial test file that confirms there is a frontpage
+# and makes sure the world exists.
+
+tests:
+
+    - name: front page
+      url: /
+      response_headers:
+          content-type: text/html; charset=UTF-8
+      response_strings:
+          - Hello World

@@ -1,0 +1,8 @@
+#
+# A mapping of URL patterns to handlers.
+# Makes learning about the API so much easier.
+#
+
+
+[/]
+    GET gdemo:get_root
