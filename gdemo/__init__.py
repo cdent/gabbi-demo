@@ -41,6 +41,19 @@ def create_container(environ, start_response):
     return []
 
 
+def delete_container(environ, start_response):
+    container_id = _get_route_value(environ, 'container_id')
+
+    try:
+        del DATA_STORE[container_id]
+    except KeyError:
+        start_response('404 Not Found', [])
+        return []
+
+    start_response('204 No Content', [])
+    return []
+
+
 def get_container(environ, start_response):
     container_id = _get_route_value(environ, 'container_id')
 

@@ -64,3 +64,13 @@ tests:
           content-type: application/json
       response_json_paths:
           $.owner: david
+
+    - name: delete the house container
+      url: /house
+      method: DELETE
+      status: 204
+
+    - name: try to delete again
+      url: /house
+      method: DELETE
+      status: 404
