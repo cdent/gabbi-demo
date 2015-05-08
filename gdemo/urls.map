@@ -20,3 +20,4 @@
 /{container_id:segment}/objects/{object_id:segment}
     GET gdemo:get_object
     PUT gdemo:update_object
+    DELETE gdemo:delete_object

@@ -58,3 +58,17 @@ tests:
           accept: application/json
       response_json_paths:
           $.objects[-1]: kitten
+
+    - name: delete one of the objects
+      desc: this will delete the one that is not a kitten
+      url: /shed/objects/$RESPONSE['$.objects[0]']
+      method: DELETE
+      status: 204
+
+    - name: list the just one object in the shed
+      url: /shed/objects
+      request_headers:
+          accept: application/json
+      response_json_paths:
+          $.objects[0]: kitten
+          $.objects[-1]: kitten
