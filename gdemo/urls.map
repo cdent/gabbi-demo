@@ -7,3 +7,6 @@
 [/]
     GET gdemo:get_root
     POST gdemo:create_container
+
+/{container_id:segment}
+    GET gdemo:get_container

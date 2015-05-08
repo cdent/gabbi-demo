@@ -24,3 +24,7 @@ tests:
           content-type: application/json
       response_json_paths:
           $.owner: sam
+
+    - name: try a container that doesn't exist
+      url: /bf429694-f5ab-11e4-810f-685b35afa334
+      status: 404
