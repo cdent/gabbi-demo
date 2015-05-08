@@ -1,0 +1,23 @@
+#
+# Use fixtures to provide some sample data which will be used test
+# some remaining features.
+#
+
+fixtures:
+    - SampleDataFixture
+
+tests:
+
+    - name: confirm objects container
+      url: /fixtured/objects
+      request_headers:
+          accept: application/json
+      response_json_paths:
+          $.objects:
+              - alpha
+              - beta
+              - delta
+              - epsilon
+              - gamma
+              - zeta
+
