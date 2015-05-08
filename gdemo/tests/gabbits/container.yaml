@@ -1,0 +1,26 @@
+#
+# A container is a first level resource which operates as a
+# namespace. It has a meaningless 'owner'.
+#
+
+tests:
+
+    - name: create a first container
+      desc: we are asking the server to provide an id
+      url: /
+      method: POST
+      request_headers:
+          content-type: application/json
+      data:
+          owner: sam
+      status: 201
+      response_headers:
+          location: /$SCHEME://$NETLOC//
+
+    - name: get that container
+      desc: the id that we don't know is in the location
+      url: $LOCATION
+      response_headers:
+          content-type: application/json
+      response_json_paths:
+          $.owner: sam

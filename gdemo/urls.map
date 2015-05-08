@@ -6,3 +6,4 @@
 
 [/]
     GET gdemo:get_root
+    POST gdemo:create_container
