@@ -1,6 +1,10 @@
 """Share utility functions."""
 
-from urllib import parse
+try:
+    from urllib import parse
+except ImportError:
+    import urllib as parse
+
 
 
 def get_route_value(environ, name):
