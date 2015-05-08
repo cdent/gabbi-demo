@@ -10,3 +10,4 @@
 
 /{container_id:segment}
     GET gdemo:get_container
+    PUT gdemo:update_container

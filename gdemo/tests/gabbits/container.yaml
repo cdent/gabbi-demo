@@ -28,3 +28,39 @@ tests:
     - name: try a container that doesn't exist
       url: /bf429694-f5ab-11e4-810f-685b35afa334
       status: 404
+
+    - name: put a container with a name we know
+      url: /house
+      method: PUT
+      request_headers:
+          content-type: application/json
+      data:
+          owner: nancy
+      status: 201
+      response_headers:
+          location: $SCHEME://$NETLOC/house
+
+    - name: get the container we created
+      url: /house
+      response_headers:
+          content-type: application/json
+      response_json_paths:
+          $.owner: nancy
+
+    - name: change the owner on that container
+      url: /house
+      method: PUT
+      request_headers:
+          content-type: application/json
+      data:
+          owner: david
+      status: 204
+      response_headers:
+          location: $SCHEME://$NETLOC/house
+
+    - name: get the container again
+      url: /house
+      response_headers:
+          content-type: application/json
+      response_json_paths:
+          $.owner: david

@@ -65,6 +65,29 @@ def get_root(environ, start_response):
     return frontpage
 
 
+def update_container(environ, start_response):
+    container_id = _get_route_value(environ, 'container_id')
+    request = webob.Request(environ)
+    data = json.loads(request.body.decode('UTF-8'))
+
+    if container_id in DATA_STORE:
+        response_code = '204 No Content'
+        DATA_STORE[container_id]['owner'] = data['owner']
+    else:
+        response_code = '201 Created'
+        DATA_STORE[container_id] = {
+            'owner': data['owner'],
+            'objects': []
+        }
+
+    location = request.relative_url(container_id)
+
+    start_response(response_code,
+                   [('Location', location)])
+
+    return []
+
+
 def _get_route_value(environ, name):
     value = environ['wsgiorg.routing_args'][1][name]
     value = parse.unquote(value)
