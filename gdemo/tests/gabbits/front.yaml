@@ -9,6 +9,7 @@ tests:
           content-type: text/html; charset=UTF-8
       response_strings:
           - This is the front page of the Gabbi Demo Application!
+          - <li>GET a list of objects in a container</li>
 
     - name: front page does not support DELETE
       url: /

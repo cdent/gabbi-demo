@@ -7,13 +7,35 @@
 
     <p>This is the front page of the Gabbi Demo Application!</p>
 
-    <p>It doesn't do very much yet.</p>
-
     <dl>
         <dt>/</dt>
         <dd>
         <ul>
             <li>GET the front page</li>
+            <li>POST to create a container</li>
+        </ul>
+        </dd>
+        <dt>/<em>id</em>
+        <dd>
+        <ul>
+            <li>GET a container</li>
+            <li>PUT to update a container</li>
+            <li>DELETE a container and its content</li>
+        </ul>
+        </dd>
+        <dt>/<em>id</em>/objects</dt>
+        <dd>
+        <ul>
+            <li>GET a list of objects in a container</li>
+            <li>POST to create an object in a container</li>
+        </ul>
+        </dd>
+        <dt>/<em>id</em>/objects/<em>id</em></dt>
+        <dd>
+        <ul>
+            <li>GET an object</li>
+            <li>PUT to update an object</li>
+            <li>DELETE an object</li>
         </ul>
         </dd>
     </dl>
