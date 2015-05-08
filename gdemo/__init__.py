@@ -108,6 +108,8 @@ def get_root(environ, start_response):
 
 
 def list_objects(environ, start_response):
+    request = webob.Request(environ)
+    best_match = request.accept.best_match(['application/json', 'text/plain'])
     container_id = _get_route_value(environ, 'container_id')
 
     try:
@@ -118,10 +120,16 @@ def list_objects(environ, start_response):
 
     objects = sorted(objects.keys())
     # container-ize the objects to avoid top level json list
-    data = json.dumps({'objects': objects})
+    if best_match == 'application/json':
+        data = json.dumps({'objects': objects})
+    elif best_match == 'text/plain':
+        data = '\n'.join(objects)
+    else:
+        start_response('406 Not Acceptable', [])
+        return []
 
     start_response('200 OK',
-                   [('Content-Type', 'application/json')])
+                   [('Content-Type', '%s; charset=UTF-8' % best_match)])
 
     return [data.encode('UTF-8')]
 

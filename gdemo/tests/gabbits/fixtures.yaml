@@ -21,3 +21,30 @@ tests:
               - gamma
               - zeta
 
+    - name: get zeta
+      url: /fixtured/objects/zeta
+      response_headers:
+          content-type: text/plain
+      response_strings:
+          - zeta
+
+    - name: get list content negotiated
+      url: /fixtured/objects
+      request_headers:
+          accept: text/plain
+      response_strings:
+          - |-
+              alpha
+              beta
+              delta
+              epsilon
+              gamma
+              zeta
+      response_headers:
+          content-type: text/plain; charset=UTF-8
+
+    - name: get list unsupported content
+      url: /fixtured/objects
+      request_headers:
+          accept: text/html
+      status: 406
