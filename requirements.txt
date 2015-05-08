@@ -1,5 +1,4 @@
 gabbi
-selector
 WebOb
 tox
 testrepository
