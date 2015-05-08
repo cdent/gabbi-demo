@@ -65,6 +65,22 @@ tests:
       method: DELETE
       status: 204
 
+    - name: change the kitten
+      desc: turn the kitten into text
+      url: /shed/objects/kitten
+      method: PUT
+      request_headers:
+          content-type: text/plain
+      data: meow
+      status: 204
+
+    - name: get the kitten text
+      url: $LOCATION
+      response_headers:
+          content-type: text/plain
+      response_strings:
+          - meow
+
     - name: list the just one object in the shed
       url: /shed/objects
       request_headers:
@@ -72,3 +88,51 @@ tests:
       response_json_paths:
           $.objects[0]: kitten
           $.objects[-1]: kitten
+
+    - name: delete the kitten once
+      url: /shed/objects/kitten
+      method: DELETE
+      status: 204
+
+    - name: delete the kitten twice
+      url: /shed/objects/kitten
+      method: DELETE
+      status: 404
+
+    - name: fail to get the kitten
+      url: /shed/objects/kitten
+      status: 404
+
+    - name: delete the shed
+      url: /shed
+      method: DELETE
+      status: 204
+
+    - name: fail to delete the shed
+      url: /shed
+      method: DELETE
+      status: 404
+
+    - name: fail to list shed objects
+      url: /shed/objects
+      status: 404
+
+    - name: fail to retrieve shed
+      url: /shed
+      status: 404
+
+    - name: try to create something in the shed
+      url: /shed/objects
+      method: POST
+      request_headers:
+          content-type: text/plain
+      data: hello
+      status: 404
+
+    - name: try to update something in the shed
+      url: /shed/objects/dog
+      method: PUT
+      request_headers:
+          content-type: text/plain
+      data: woof
+      status: 404

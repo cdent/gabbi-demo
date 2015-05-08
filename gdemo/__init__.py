@@ -191,12 +191,12 @@ def update_object(environ, start_response):
         'body': request.body  # no encoding handling
     }
 
-    if object_id in DATA_STORE[container_id]['objects']:
-        status = '204 No Content'
-    else:
-        status = '201 Created'
-
     try:
+        if object_id in DATA_STORE[container_id]['objects']:
+            status = '204 No Content'
+        else:
+            status = '201 Created'
+
         DATA_STORE[container_id]['objects'][object_id] = object_data
     except KeyError:
         start_response('404 Not Found', [])

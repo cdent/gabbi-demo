@@ -1,5 +1,7 @@
 gabbi
 WebOb
+coverage
+selector
 tox
 testrepository
 tempest-lib
