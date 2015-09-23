@@ -1,4 +1,5 @@
 gabbi
+gunicorn
 WebOb
 coverage
 selector

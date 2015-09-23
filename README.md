@@ -32,7 +32,7 @@ retrieving objects of stuff put in containers. The containers and
 objects can have names if you provide them or the server can provide a
 uuid. There is no persistence: data is stored in memory and when the
 server shuts down stuff is gone. The HTML provided at / provides a
-list of available URLS. So does the files `gdemo/urls.map`.
+list of available URLS. So does the file `gdemo/urls.map`.
 
 For the sake of transparency, the app does not use an obscuring
 magical framework. Instead [selector](https://pypi.python.org/pypi/selector)
@@ -46,7 +46,8 @@ is simple and that's the point.
 The process used to create the app has resulted in the backend that
 will be used during a demo to be given at the OpenStack Liberty
 Summit in Vancouver, May 2015. When the artifacts from that presentation
-are available they will be linked here.
+are available they will be [linked
+here](https://github.com/cdent/grunner).
 
 If you want to run gdemo yourself you need some kind of WSGI server.
 [gunicorn](https://pypi.python.org/pypi/gunicorn) works well.

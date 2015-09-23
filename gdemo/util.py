@@ -6,7 +6,6 @@ except ImportError:
     import urllib as parse
 
 
-
 def get_route_value(environ, name):
     value = environ['wsgiorg.routing_args'][1][name]
     value = parse.unquote(value)
