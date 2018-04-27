@@ -4,5 +4,4 @@ WebOb
 coverage
 selector
 tox
-testrepository
-tempest-lib
+stestr
